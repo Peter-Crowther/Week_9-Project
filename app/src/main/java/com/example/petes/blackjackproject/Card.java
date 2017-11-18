@@ -9,7 +9,7 @@ public class Card {
     Suit suit;
     Rank rank;
 
-    public Card() {
+    public Card(Suit hearts, Rank eight) {
         this.suit = suit;
         this.rank = rank;
     }
