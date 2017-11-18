@@ -16,4 +16,26 @@ public class Player {
         this.cards = new ArrayList<>();
     }
 
+
+    public String getName() {
+        return name;
+    }
+
+    public int getTotalValueOfCards() {
+        int totalValue = 0;
+
+        for(Card card : this.cards) {
+            totalValue += card.getValue();
+        }
+
+        return totalValue;
+    }
+
+    public int getNumberOfCards() {
+        return this.cards.size();
+    }
+
+    public void takeCard(Card card){
+        this.cards.add(card);
+    }
 }
