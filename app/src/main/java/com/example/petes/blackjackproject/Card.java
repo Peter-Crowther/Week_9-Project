@@ -9,12 +9,19 @@ public class Card {
     Suit suit;
     Rank rank;
 
-    public Card(Suit hearts, Rank eight) {
+    public Card(Suit suit, Rank rank) {
         this.suit = suit;
         this.rank = rank;
     }
+    public Suit getSuit() {
+        return suit;
+    }
 
+    public Rank getRank() {
+        return rank;
+    }
 
-
-
+    public int getValue() {
+        return this.rank.getValue();
+    }
 }
