@@ -1,5 +1,10 @@
 package com.example.petes.blackjackproject;
 
+import com.example.petes.blackjackproject.models.Card;
+import com.example.petes.blackjackproject.models.Deck;
+import com.example.petes.blackjackproject.models.Rank;
+import com.example.petes.blackjackproject.models.Suit;
+
 import org.junit.Before;
 import org.junit.Test;
 

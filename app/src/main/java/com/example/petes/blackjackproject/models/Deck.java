@@ -1,4 +1,4 @@
-package com.example.petes.blackjackproject;
+package com.example.petes.blackjackproject.models;
 
 import java.util.ArrayList;
 import java.util.Collections;
