@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">BlackJackProject</string>
+    <string name="dealer_hand">Dealer</string>
+    <string name="dealer_value">display what dealer holds</string>
+    <string name="player_hand">Player</string>
+    <string name="player_value">display what dealer holds</string>
+    <string name="deal_button">Deal</string>
+    <string name="result">displays winner</string>
 </resources>
