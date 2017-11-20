@@ -8,4 +8,6 @@
     <string name="result">displays winner</string>
     <string name="dealer_message" />
     <string name="dealers_hand">what the dealer holds</string>
+    <string name="hit">Hit</string>
+    <string name="stand">Stand</string>
 </resources>

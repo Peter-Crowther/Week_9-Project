@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView playerHand;
     private TextView result;
     private Button deal;
+    private Button hit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,22 +31,39 @@ public class MainActivity extends AppCompatActivity {
         this.playerHand = findViewById(R.id.playerHand);
         this.result = findViewById(R.id.result);
         this.deal = findViewById(R.id.dealButton);
+        this.hit = findViewById(R.id.hit);
 
     }
 
+    Player player = new Player("Pete");
+    Player dealer = new Player("Dealer");
+    Game game = new Game(player, dealer);
+
+    public void update() {
+
+    }
+
+
     public void onButtonClicked(View deal) {
 
-        Player player = new Player("Pete");
-        Player dealer = new Player("Dealer");
-        Game game = new Game(player, dealer);
+//        Player player = new Player("Pete");
+//        Player dealer = new Player("Dealer");
+//        Game game = new Game(player, dealer);
         game.deal();
         Integer playerResult = player.getTotalValueOfCards();
         Integer dealerResult = dealer.getTotalValueOfCards();
-        dealerCards.setText(dealer.getHand());
+        dealerCards.setText("Dealer; " + dealer.getHand());
         dealerHand.setText(dealerResult.toString());
         playerCards.setText(player.getHand());
         playerHand.setText(playerResult.toString());
         result.setText(game.getWinner());
+    }
+
+    public void onHitButtonClicked(View hit) {
+        game.hit();
+        playerCards.setText(player.getHand());
+        Integer playerResult = player.getTotalValueOfCards();
+        playerHand.setText(playerResult.toString());
     }
 
 

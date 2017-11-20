@@ -47,11 +47,19 @@ public class Game {
         for (int i = 0; i < 2; i++) {
             Card card = deck.removeCard();
             this.player.takeCard(card);
-            Card card2 = deck.removeCard();
-            this.dealer.takeCard(card2);
+//            Card card2 = deck.removeCard();
+//            this.dealer.takeCard(card2);
         }
-
+        Card card = deck.removeCard();
+        this.dealer.takeCard(card);
     }
+
+    public void hit() {
+        Card card = deck.removeCard();
+        this.player.takeCard(card);
+    }
+
+
 
 //    public String getWinner() {
 //        Player highestHand  = players.get(0);
@@ -67,6 +75,12 @@ public class Game {
     public String getWinner() {
         if (player.getTotalValueOfCards() > dealer.getTotalValueOfCards()) {
             return("You Win!");
+        }
+        else if (player.getTotalValueOfCards() > 21) {
+            return "Dealer Wins";
+        }
+        else if (dealer.getTotalValueOfCards() > 21) {
+            return "You Win";
         }
         else if (player.getTotalValueOfCards() < dealer.getTotalValueOfCards()) {
             return("Dealer Wins!");
