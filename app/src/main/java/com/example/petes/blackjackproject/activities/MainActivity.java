@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView result;
     private Button deal;
     private Button hit;
+    private Button stand;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
         this.result = findViewById(R.id.result);
         this.deal = findViewById(R.id.dealButton);
         this.hit = findViewById(R.id.hit);
+        this.stand = findViewById(R.id.stand);
 
     }
 
@@ -45,10 +47,9 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void onButtonClicked(View deal) {
-
-//        Player player = new Player("Pete");
-//        Player dealer = new Player("Dealer");
-//        Game game = new Game(player, dealer);
+        Player player = new Player("Pete");
+        Player dealer = new Player("Dealer");
+        Game game = new Game(player, dealer);
         game.deal();
         Integer playerResult = player.getTotalValueOfCards();
         Integer dealerResult = dealer.getTotalValueOfCards();
@@ -56,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
         dealerHand.setText(dealerResult.toString());
         playerCards.setText(player.getHand());
         playerHand.setText(playerResult.toString());
-        result.setText(game.getWinner());
+//        result.setText(game.getWinner());
     }
 
     public void onHitButtonClicked(View hit) {
@@ -64,6 +65,21 @@ public class MainActivity extends AppCompatActivity {
         playerCards.setText(player.getHand());
         Integer playerResult = player.getTotalValueOfCards();
         playerHand.setText(playerResult.toString());
+//        if (player.getTotalValueOfCards() >21){
+//            result.setText(game.getWinner());
+//        }
+    }
+
+    public void onStandButtonClicked(View stand) {
+        game.stand();
+        Integer dealerResult = dealer.getTotalValueOfCards();
+        dealerCards.setText("Dealer; " + dealer.getHand());
+        dealerHand.setText(dealerResult.toString());
+        if (dealer.getTotalValueOfCards() <17){
+            game.stand();
+        }
+//        if (dealer.getTotalValueOfCards() >21)
+//            result.setText(game.getWinner());
     }
 
 
