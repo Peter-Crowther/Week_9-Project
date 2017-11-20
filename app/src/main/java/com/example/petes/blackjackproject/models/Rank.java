@@ -5,9 +5,9 @@ package com.example.petes.blackjackproject.models;
  */
 
 public enum Rank {
-    KING(13),
-    QUEEN(12),
-    JACK(11),
+    KING(10),
+    QUEEN(10),
+    JACK(10),
     TEN(10),
     NINE(9),
     EIGHT(8),
@@ -17,7 +17,7 @@ public enum Rank {
     FOUR(4),
     THREE(3),
     TWO(2),
-    ACE(1);
+    ACE(11);
 
     private int value;
 

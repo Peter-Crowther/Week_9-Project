@@ -16,11 +16,11 @@ public class Game {
 
 
 
-    public Game() {
+    public Game(Player player, Player dealer) {
 //        this.players = new ArrayList<Player>();
         this.deck = new Deck();
-        this.player = new Player("Pete");
-        this.dealer = new Player("Dealer");
+        this.player = player;
+        this.dealer = dealer;
 
 
     }
@@ -46,8 +46,9 @@ public class Game {
         Game.this.setUp();
         for (int i = 0; i < 2; i++) {
             Card card = deck.removeCard();
-            player.takeCard(card);
-            dealer.takeCard(card);
+            this.player.takeCard(card);
+            Card card2 = deck.removeCard();
+            this.dealer.takeCard(card2);
         }
 
     }
@@ -64,13 +65,13 @@ public class Game {
 //    }
 
     public String getWinner() {
-        if (player.getTotalValueOfCards() >= dealer.getTotalValueOfCards()) {
+        if (player.getTotalValueOfCards() > dealer.getTotalValueOfCards()) {
             return("You Win!");
         }
-        else if (player.getTotalValueOfCards() <= dealer.getTotalValueOfCards()) {
+        else if (player.getTotalValueOfCards() < dealer.getTotalValueOfCards()) {
             return("Dealer Wins!");
         }
-        else return("Push");
+        else return("Draw");
     }
 
 

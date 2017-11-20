@@ -17,6 +17,10 @@ public class Card {
         return suit;
     }
 
+    public String getSuitValue() {
+        return this.suit.getSuitValue();
+    }
+
     public Rank getRank() {
         return rank;
     }

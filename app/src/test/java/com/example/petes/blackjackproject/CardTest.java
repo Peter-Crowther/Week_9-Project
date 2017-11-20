@@ -34,6 +34,11 @@ public class CardTest {
         assertEquals(HEARTS, card.getSuit());
     }
 
+    @Test
+    public void testCardSuitValue() {
+        assertEquals("hearts", card.getSuitValue());
+    }
+
 
 
 }

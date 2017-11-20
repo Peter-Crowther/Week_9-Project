@@ -38,4 +38,16 @@ public class Player {
     public void takeCard(Card card){
         this.cards.add(card);
     }
+
+    public String getHand() {
+        
+        for (Card card : this.cards) {
+            String value = card.getRank().toString();
+            String suit = card.getSuitValue();
+        }
+        return value;
+
+    }
+
+
 }
