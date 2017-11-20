@@ -19,8 +19,8 @@ public class Game {
     public Game() {
 //        this.players = new ArrayList<Player>();
         this.deck = new Deck();
-        this.player = new Player();
-        this.dealer = new Player();
+        this.player = new Player("Pete");
+        this.dealer = new Player("Dealer");
 
 
     }
@@ -63,7 +63,15 @@ public class Game {
 //        return highestHand.getName();
 //    }
 
-
+    public String getWinner() {
+        if (player.getTotalValueOfCards() >= dealer.getTotalValueOfCards()) {
+            return("You Win!");
+        }
+        else if (player.getTotalValueOfCards() <= dealer.getTotalValueOfCards()) {
+            return("Dealer Wins!");
+        }
+        else return("Push");
+    }
 
 
 

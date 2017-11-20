@@ -34,30 +34,27 @@ public class GameTest {
         card4 = new Card(SPADES, Rank.SIX);
     }
 
-    @Test
-    public void testAddPlayer() {
-        game.addPlayer("Peter");
-        assertEquals(1, game.players.size());
-    }
-
-    @Test
-    public void testAddDealer() {
-        game.addDealer("Dealer");
-        assertEquals(1, game.players.size());
-    }
+//    @Test
+//    public void testAddPlayer() {
+//        game.addPlayer("Peter");
+//        assertEquals(1, game.players.size());
+//    }
+//
+//    @Test
+//    public void testAddDealer() {
+//        game.addDealer("Dealer");
+//        assertEquals(1, game.players.size());
+//    }
 
 
     @Test
     public void testWinner() {
-        Player player1 = new Player("Peter");
-        Player player2 = new Player("Dealer");
-        game.addPlayer("Peter");
-        game.addPlayer("Dealer");
-        player1.takeCard(card1);
-        player1.takeCard(card2);
-        player2.takeCard(card3);
-        player2.takeCard(card4);
-
-        assertEquals("Peter", game.getWinner());
+        Player player = new Player("Peter");
+        Player dealer = new Player("Dealer");
+        player.takeCard(card1);
+        player.takeCard(card2);
+        dealer.takeCard(card3);
+        dealer.takeCard(card4);
+        assertEquals("You Win!", game.getWinner());
     }
 }
