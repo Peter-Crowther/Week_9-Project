@@ -12,7 +12,9 @@ import com.example.petes.blackjackproject.models.Player;
 
 public class MainActivity extends AppCompatActivity {
 
+    private TextView dealerCards;
     private TextView dealerHand;
+    private TextView playerCards;
     private TextView playerHand;
     private TextView result;
     private Button deal;
@@ -22,7 +24,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        this.dealerCards = findViewById(R.id.dealerCards);
         this.dealerHand = findViewById(R.id.dealerHand);
+        this.playerCards = findViewById(R.id.playerCards);
         this.playerHand = findViewById(R.id.playerHand);
         this.result = findViewById(R.id.result);
         this.deal = findViewById(R.id.dealButton);
@@ -37,7 +41,9 @@ public class MainActivity extends AppCompatActivity {
         game.deal();
         Integer playerResult = player.getTotalValueOfCards();
         Integer dealerResult = dealer.getTotalValueOfCards();
+        dealerCards.setText(dealer.getHand());
         dealerHand.setText(dealerResult.toString());
+        playerCards.setText(player.getHand());
         playerHand.setText(playerResult.toString());
         result.setText(game.getWinner());
     }

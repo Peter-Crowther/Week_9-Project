@@ -40,12 +40,14 @@ public class Player {
     }
 
     public String getHand() {
-        
+        String handCard = "";
+
         for (Card card : this.cards) {
-            String value = card.getRank().toString();
-            String suit = card.getSuitValue();
+            String value = card.getRank().toString() + " ";
+            String suit = card.getSuitValue() + "; ";
+            handCard += value + suit;
         }
-        return value;
+        return handCard;
 
     }
 
