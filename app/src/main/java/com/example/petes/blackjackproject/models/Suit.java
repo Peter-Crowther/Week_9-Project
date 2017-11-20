@@ -5,8 +5,19 @@ package com.example.petes.blackjackproject.models;
  */
 
 public enum Suit {
-    CLUBS,
-    SPADES,
-    HEARTS,
-    DIAMONDS
+    CLUBS("clubs"),
+    SPADES("spades"),
+    HEARTS("hearts"),
+    DIAMONDS("diamonds");
+
+
+    private String value;
+
+    Suit(String value){
+        this.value = value;
+    }
+
+    public String getSuitValue() {
+        return value;
+    }
 }

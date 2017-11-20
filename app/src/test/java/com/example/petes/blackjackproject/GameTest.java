@@ -46,6 +46,7 @@ public class GameTest {
         assertEquals(1, game.players.size());
     }
 
+
     @Test
     public void testWinner() {
         Player player1 = new Player("Peter");

@@ -6,4 +6,6 @@
     <string name="player_value">display what dealer holds</string>
     <string name="deal_button">Deal</string>
     <string name="result">displays winner</string>
+    <string name="dealer_message" />
+    <string name="dealers_hand">what the dealer holds</string>
 </resources>
