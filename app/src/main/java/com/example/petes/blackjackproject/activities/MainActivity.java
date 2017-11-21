@@ -12,6 +12,8 @@ import com.example.petes.blackjackproject.models.Player;
 
 public class MainActivity extends AppCompatActivity {
 
+    private boolean isRunning;
+
     private TextView dealerCards;
     private TextView dealerHand;
     private TextView playerCards;
@@ -34,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
         this.deal = findViewById(R.id.dealButton);
         this.hit = findViewById(R.id.hit);
         this.stand = findViewById(R.id.stand);
+        isRunning = true;
 
     }
 
@@ -45,52 +48,57 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void onButtonClicked(View deal) {
-        result.setText(null);
-        player.clearHand();
-        dealer.clearHand();
-        game.deal();
-        Integer playerResult = player.getTotalValueOfCards();
-        Integer dealerResult = dealer.getTotalValueOfCards();
-        dealerCards.setText("Dealer; " + dealer.getHand());
-        dealerHand.setText(dealerResult.toString());
-        playerCards.setText("Player; "+ player.getHand());
-        playerHand.setText(playerResult.toString());
-        if (player.getTotalValueOfCards() == 21) {
-            result.setText("Blackjack!");
-
-        }
-
+            isRunning = true;
+            result.setText(null);
+            player.clearHand();
+            dealer.clearHand();
+            game.deal();
+            Integer playerResult = player.getTotalValueOfCards();
+            Integer dealerResult = dealer.getTotalValueOfCards();
+            dealerCards.setText("Dealer; " + dealer.getHand());
+            dealerHand.setText(dealerResult.toString());
+            playerCards.setText("Player; " + player.getHand());
+            playerHand.setText(playerResult.toString());
+            if (player.getTotalValueOfCards() == 21) {
+                result.setText("Blackjack!");
+                isRunning = false;
+            }
     }
 
     public void onHitButtonClicked(View hit) {
-        game.hit();
-        Integer playerResult = player.getTotalValueOfCards();
-        playerCards.setText("Player; "+ player.getHand());
-        playerHand.setText(playerResult.toString());
-        //if player busts from hitting
-        if (player.getTotalValueOfCards() > 21){
+        if (isRunning) {
+            game.hit();
+            Integer playerResult = player.getTotalValueOfCards();
+            playerCards.setText("Player; " + player.getHand());
+            playerHand.setText(playerResult.toString());
+            //if player busts from hitting
+            if (player.getTotalValueOfCards() > 21) {
                 game.stand();
                 Integer dealerResult = dealer.getTotalValueOfCards();
                 dealerCards.setText("Dealer; " + dealer.getHand());
                 dealerHand.setText(dealerResult.toString());
                 result.setText(game.getWinner());
+                isRunning = false;
             }
 
-
         }
+    }
 
 
     public void onStandButtonClicked(View stand) {
-        //dealer takes cards until hand is 17 or greater.
-        while (dealer.getTotalValueOfCards() < 17) {
-        game.stand();
-        Integer dealerResult = dealer.getTotalValueOfCards();
-        dealerCards.setText("Dealer; " + dealer.getHand());
-        dealerHand.setText(dealerResult.toString());
-        }
-        result.setText(game.getWinner());
+        if (isRunning) {
 
+            while (dealer.getTotalValueOfCards() < 17) {
+                game.stand();
+                Integer dealerResult = dealer.getTotalValueOfCards();
+                dealerCards.setText("Dealer; " + dealer.getHand());
+                dealerHand.setText(dealerResult.toString());
+            }
+            result.setText(game.getWinner());
+            isRunning = false;
+        }
     }
+
 
 
 
