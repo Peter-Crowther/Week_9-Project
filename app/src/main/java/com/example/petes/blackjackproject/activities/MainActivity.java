@@ -71,7 +71,18 @@ public class MainActivity extends AppCompatActivity {
             Integer playerResult = player.getTotalValueOfCards();
             playerCards.setText("Player; " + player.getHand());
             playerHand.setText(playerResult.toString());
-            //if player busts from hitting
+            //if player reaches 21, end turn.
+            if (player.getTotalValueOfCards() == 21) {
+                while (dealer.getTotalValueOfCards() < 17) {
+                    game.stand();
+                    Integer dealerResult = dealer.getTotalValueOfCards();
+                    dealerCards.setText("Dealer; " + dealer.getHand());
+                    dealerHand.setText(dealerResult.toString());
+                }
+                result.setText(game.getWinner());
+                isRunning = false;
+            }
+            //if player busts from hitting, end turn.
             if (player.getTotalValueOfCards() > 21) {
                 game.stand();
                 Integer dealerResult = dealer.getTotalValueOfCards();
@@ -87,7 +98,6 @@ public class MainActivity extends AppCompatActivity {
 
     public void onStandButtonClicked(View stand) {
         if (isRunning) {
-
             while (dealer.getTotalValueOfCards() < 17) {
                 game.stand();
                 Integer dealerResult = dealer.getTotalValueOfCards();
