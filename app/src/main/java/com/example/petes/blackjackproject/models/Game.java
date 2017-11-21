@@ -13,19 +13,21 @@ public class Game {
 
 
 
+
     public Game(Player player, Player dealer) {
         this.deck = new Deck();
         this.player = player;
         this.dealer = dealer;
     }
 
-    public void setUp() {
-        deck.generateDeck();
-        deck.shuffle();
+    private void setUp() {
+        this.deck = new Deck();
+        this.deck.generateDeck();
+        this.deck.shuffle();
     }
 
     public void deal() {
-        Game.this.setUp();
+        this.setUp();
         for (int i = 0; i < 2; i++) {
             Card card = deck.removeCard();
             this.player.takeCard(card);
@@ -46,11 +48,9 @@ public class Game {
 
 
     public String getWinner() {
-        if (player.getTotalValueOfCards() > dealer.getTotalValueOfCards()) {
-            return("You Win!");
-        }
-        else if (player.getTotalValueOfCards() > 21) {
-            return "Dealer Wins";
+
+         if (player.getTotalValueOfCards() > 21) {
+            return("Dealer Wins");
         }
         else if (dealer.getTotalValueOfCards() > 21) {
             return "You Win!";
@@ -58,8 +58,12 @@ public class Game {
         else if (player.getTotalValueOfCards() < dealer.getTotalValueOfCards()) {
             return("Dealer Wins!");
         }
-        else return("Draw");
+        else if (player.getTotalValueOfCards() > dealer.getTotalValueOfCards()) {
+            return ("You Win!");
+        }
+        else return("Push");
     }
+
 
 
 

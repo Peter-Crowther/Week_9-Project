@@ -49,7 +49,10 @@ public class Player {
             handCard += value + suit;
         }
         return handCard;
+    }
 
+    public void clearHand() {
+        this.cards.clear();
     }
 
 

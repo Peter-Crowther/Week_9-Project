@@ -41,45 +41,55 @@ public class MainActivity extends AppCompatActivity {
     Player dealer = new Player("Dealer");
     Game game = new Game(player, dealer);
 
-    public void update() {
 
-    }
 
 
     public void onButtonClicked(View deal) {
-        Player player = new Player("Pete");
-        Player dealer = new Player("Dealer");
-        Game game = new Game(player, dealer);
+        result.setText(null);
+        player.clearHand();
+        dealer.clearHand();
         game.deal();
         Integer playerResult = player.getTotalValueOfCards();
         Integer dealerResult = dealer.getTotalValueOfCards();
         dealerCards.setText("Dealer; " + dealer.getHand());
         dealerHand.setText(dealerResult.toString());
-        playerCards.setText(player.getHand());
+        playerCards.setText("Player; "+ player.getHand());
         playerHand.setText(playerResult.toString());
-//        result.setText(game.getWinner());
+        if (player.getTotalValueOfCards() == 21) {
+            result.setText("Blackjack!");
+
+        }
+
     }
 
     public void onHitButtonClicked(View hit) {
         game.hit();
-        playerCards.setText(player.getHand());
         Integer playerResult = player.getTotalValueOfCards();
+        playerCards.setText("Player; "+ player.getHand());
         playerHand.setText(playerResult.toString());
-//        if (player.getTotalValueOfCards() >21){
-//            result.setText(game.getWinner());
-//        }
-    }
+        //if player busts from hitting
+        if (player.getTotalValueOfCards() > 21){
+                game.stand();
+                Integer dealerResult = dealer.getTotalValueOfCards();
+                dealerCards.setText("Dealer; " + dealer.getHand());
+                dealerHand.setText(dealerResult.toString());
+                result.setText(game.getWinner());
+            }
+
+
+        }
+
 
     public void onStandButtonClicked(View stand) {
+        //dealer takes cards until hand is 17 or greater.
+        while (dealer.getTotalValueOfCards() < 17) {
         game.stand();
         Integer dealerResult = dealer.getTotalValueOfCards();
         dealerCards.setText("Dealer; " + dealer.getHand());
         dealerHand.setText(dealerResult.toString());
-        if (dealer.getTotalValueOfCards() <17){
-            game.stand();
         }
-//        if (dealer.getTotalValueOfCards() >21)
-//            result.setText(game.getWinner());
+        result.setText(game.getWinner());
+
     }
 
 
