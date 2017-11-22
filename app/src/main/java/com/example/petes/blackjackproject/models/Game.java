@@ -1,11 +1,6 @@
 package com.example.petes.blackjackproject.models;
 
 
-import java.nio.channels.AlreadyConnectedException;
-import java.util.ArrayList;
-
-import static com.example.petes.blackjackproject.models.Rank.ACE;
-
 /**
  * Created by petes on 18/11/2017.
  */
@@ -65,14 +60,31 @@ public class Game {
         result.playerTotal = Integer.toString(player.getTotalValueOfCards());
         result.playerHands = player.getHand();
         result.dealerHands = dealer.getHand();
-        result.delerValue = Integer.toString(dealer.getTotalValueOfCards());
+        result.dealerTotal = Integer.toString(dealer.getTotalValueOfCards());
 
         return result;
     }
 
-    public void stand() {
+    public GameResult stand() {
         Card card = deck.removeCard();
         this.dealer.takeCard(card);
+
+        GameResult result = new GameResult();
+
+                while (dealer.getTotalValueOfCards() < 17) {
+                this.stand();
+
+                result.isGameOver = true;
+                result.gameText = this.getWinner();
+
+            }
+
+        result.playerTotal = Integer.toString(player.getTotalValueOfCards());
+        result.playerHands = player.getHand();
+        result.dealerHands = dealer.getHand();
+        result.dealerTotal = Integer.toString(dealer.getTotalValueOfCards());
+
+        return result;
     }
 
 

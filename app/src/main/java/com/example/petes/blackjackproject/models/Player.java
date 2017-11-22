@@ -35,7 +35,7 @@ public class Player {
             value = value + cardValue;
         }
 
-        if ( ace  &&  value + 10 <= 21 )
+        if (ace  &&  value + 10 <= 21)
             value = value + 10;
 
         return value;

@@ -11,10 +11,15 @@ import com.example.petes.blackjackproject.models.Game;
 import com.example.petes.blackjackproject.models.GameResult;
 import com.example.petes.blackjackproject.models.Player;
 
+
+
+
 public class MainActivity extends AppCompatActivity {
 
     private boolean isRunning;
 
+    private TextView howToPlay;
+    private TextView rules;
     private TextView dealerCards;
     private TextView dealerHand;
     private TextView dealerScore;
@@ -30,7 +35,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        this.howToPlay = findViewById(R.id.howToPlay);
+        this.rules = findViewById(R.id.rules);
         this.dealerCards = findViewById(R.id.dealerCards);
         this.dealerHand = findViewById(R.id.dealerHand);
         this.dealerScore = findViewById(R.id.dealerScore);
@@ -54,9 +60,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void onButtonClicked(View deal) {
             isRunning = true;
+            howToPlay.setText(null);
+            rules.setText(null);
             result.setText(null);
-            playerScore.setText(null);
-            dealerScore.setText(null);
             player.clearHand();
             dealer.clearHand();
             game.deal();
@@ -89,52 +95,27 @@ public class MainActivity extends AppCompatActivity {
                 isRunning = false;
                 result.setText(gameResult.gameText);
             }
-
-
-//            game.hit();
-//            Integer playerResult = player.getTotalValueOfCards();
-//            playerCards.setText(player.getHand());
-//            playerHand.setText(playerResult.toString());
-//            //if player reaches 21, end turn.
-//            if (player.getTotalValueOfCards() == 21) {
-//                while (dealer.getTotalValueOfCards() < 17) {
-//                    game.stand();
-//                    Integer dealerResult = dealer.getTotalValueOfCards();
-//                    dealerCards.setText(dealer.getHand());
-//                    dealerHand.setText(dealerResult.toString());
-//                }
-//                result.setText(game.getWinner());
-//                isRunning = false;
-//            }
-//            //if player busts from hitting, end turn.
-//            if (player.getTotalValueOfCards() > 21) {
-//                game.stand();
-//                Integer dealerResult = dealer.getTotalValueOfCards();
-//                dealerCards.setText(dealer.getHand());
-//                dealerHand.setText(dealerResult.toString());
-//                result.setText(game.getWinner());
-//                isRunning = false;
-//            }
-
         }
     }
 
 
     public void onStandButtonClicked(View stand) {
+
         if (isRunning) {
-            while (dealer.getTotalValueOfCards() < 17) {
-                game.stand();
-                Integer dealerResult = dealer.getTotalValueOfCards();
-                dealerCards.setText(dealer.getHand());
-                dealerHand.setText(dealerResult.toString());
+            GameResult gameResult = game.stand();
+
+            playerCards.setText(gameResult.playerHands);
+            playerHand.setText(gameResult.playerTotal);
+
+            dealerCards.setText(gameResult.dealerHands);
+            dealerHand.setText(gameResult.dealerTotal);
+
+            if (gameResult.isGameOver) {
+                isRunning = false;
+                result.setText(gameResult.gameText);
             }
-            result.setText(game.getWinner());
-            isRunning = false;
         }
     }
-
-
-
 
 
 
