@@ -1,6 +1,11 @@
 package com.example.petes.blackjackproject.models;
 
 
+import java.nio.channels.AlreadyConnectedException;
+import java.util.ArrayList;
+
+import static com.example.petes.blackjackproject.models.Rank.ACE;
+
 /**
  * Created by petes on 18/11/2017.
  */
@@ -31,10 +36,12 @@ public class Game {
         for (int i = 0; i < 2; i++) {
             Card card = deck.removeCard();
             this.player.takeCard(card);
+
         }
         Card card = deck.removeCard();
         this.dealer.takeCard(card);
     }
+
 
     public void hit() {
         Card card = deck.removeCard();
@@ -63,6 +70,8 @@ public class Game {
         }
         else return("Push");
     }
+
+
 
 
 

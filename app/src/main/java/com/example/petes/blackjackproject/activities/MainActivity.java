@@ -16,8 +16,10 @@ public class MainActivity extends AppCompatActivity {
 
     private TextView dealerCards;
     private TextView dealerHand;
+    private TextView dealerScore;
     private TextView playerCards;
     private TextView playerHand;
+    private TextView playerScore;
     private TextView result;
     private Button deal;
     private Button hit;
@@ -30,8 +32,10 @@ public class MainActivity extends AppCompatActivity {
 
         this.dealerCards = findViewById(R.id.dealerCards);
         this.dealerHand = findViewById(R.id.dealerHand);
+        this.dealerScore = findViewById(R.id.dealerScore);
         this.playerCards = findViewById(R.id.playerCards);
         this.playerHand = findViewById(R.id.playerHand);
+        this.playerScore = findViewById(R.id.playerScore);
         this.result = findViewById(R.id.result);
         this.deal = findViewById(R.id.dealButton);
         this.hit = findViewById(R.id.hit);
@@ -50,15 +54,19 @@ public class MainActivity extends AppCompatActivity {
     public void onButtonClicked(View deal) {
             isRunning = true;
             result.setText(null);
+            playerScore.setText(null);
+            dealerScore.setText(null);
             player.clearHand();
             dealer.clearHand();
             game.deal();
             Integer playerResult = player.getTotalValueOfCards();
             Integer dealerResult = dealer.getTotalValueOfCards();
-            dealerCards.setText("Dealer; " + dealer.getHand());
+            dealerCards.setText(dealer.getHand());
             dealerHand.setText(dealerResult.toString());
-            playerCards.setText("Player; " + player.getHand());
+            dealerScore.setText("Dealer Score");
+            playerCards.setText(player.getHand());
             playerHand.setText(playerResult.toString());
+            playerScore.setText("Your score");
             if (player.getTotalValueOfCards() == 21) {
                 result.setText("Blackjack!");
                 isRunning = false;
@@ -69,14 +77,14 @@ public class MainActivity extends AppCompatActivity {
         if (isRunning) {
             game.hit();
             Integer playerResult = player.getTotalValueOfCards();
-            playerCards.setText("Player; " + player.getHand());
+            playerCards.setText(player.getHand());
             playerHand.setText(playerResult.toString());
             //if player reaches 21, end turn.
             if (player.getTotalValueOfCards() == 21) {
                 while (dealer.getTotalValueOfCards() < 17) {
                     game.stand();
                     Integer dealerResult = dealer.getTotalValueOfCards();
-                    dealerCards.setText("Dealer; " + dealer.getHand());
+                    dealerCards.setText(dealer.getHand());
                     dealerHand.setText(dealerResult.toString());
                 }
                 result.setText(game.getWinner());
@@ -86,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
             if (player.getTotalValueOfCards() > 21) {
                 game.stand();
                 Integer dealerResult = dealer.getTotalValueOfCards();
-                dealerCards.setText("Dealer; " + dealer.getHand());
+                dealerCards.setText(dealer.getHand());
                 dealerHand.setText(dealerResult.toString());
                 result.setText(game.getWinner());
                 isRunning = false;
@@ -101,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
             while (dealer.getTotalValueOfCards() < 17) {
                 game.stand();
                 Integer dealerResult = dealer.getTotalValueOfCards();
-                dealerCards.setText("Dealer; " + dealer.getHand());
+                dealerCards.setText(dealer.getHand());
                 dealerHand.setText(dealerResult.toString());
             }
             result.setText(game.getWinner());

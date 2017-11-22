@@ -2,6 +2,8 @@ package com.example.petes.blackjackproject.models;
 
 import java.util.ArrayList;
 
+import static com.example.petes.blackjackproject.models.Rank.ACE;
+
 /**
  * Created by petes on 18/11/2017.
  */
@@ -45,15 +47,27 @@ public class Player {
 
         for (Card card : this.cards) {
             String value = card.getRank().toString() + " ";
-            String suit = card.getSuitValue() + "; ";
+            String suit = card.getSuitValue() + "; \n";
             handCard += value + suit;
         }
         return handCard;
     }
 
+
+
     public void clearHand() {
         this.cards.clear();
     }
+
+    public boolean hasAce() {
+        for (Card card : cards) {
+            if (card.getRank() == ACE){
+            }
+        }
+        return true;
+    }
+
+
 
 
 }
