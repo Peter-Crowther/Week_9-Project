@@ -17,7 +17,7 @@ public enum Rank {
     FOUR(4),
     THREE(3),
     TWO(2),
-    ACE(11);
+    ACE(1);
 
     private int value;
 

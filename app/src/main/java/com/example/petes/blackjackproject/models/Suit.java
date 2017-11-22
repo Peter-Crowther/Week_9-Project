@@ -5,10 +5,10 @@ package com.example.petes.blackjackproject.models;
  */
 
 public enum Suit {
-    CLUBS("of Clubs"),
-    SPADES("of Spades"),
-    HEARTS("of Hearts"),
-    DIAMONDS("of Diamonds");
+    CLUBS("OF CLUBS"),
+    SPADES("OF SPADES"),
+    HEARTS("OF HEARTS"),
+    DIAMONDS("OF DIAMONDS");
 
 
     private String value;

@@ -24,13 +24,21 @@ public class Player {
     }
 
     public int getTotalValueOfCards() {
-        int totalValue = 0;
+        int value = 0;
+        boolean ace = false;
 
-        for(Card card : this.cards) {
-            totalValue += card.getValue();
+        for (Card card: this.cards) {
+            int cardValue = card.getValue();
+            if (cardValue == 1) {
+                ace = true;
+            }
+            value = value + cardValue;
         }
 
-        return totalValue;
+        if ( ace  &&  value + 10 <= 21 )
+            value = value + 10;
+
+        return value;
     }
 
     public int getNumberOfCards() {
@@ -59,13 +67,7 @@ public class Player {
         this.cards.clear();
     }
 
-    public boolean hasAce() {
-        for (Card card : cards) {
-            if (card.getRank() == ACE){
-            }
-        }
-        return true;
-    }
+
 
 
 

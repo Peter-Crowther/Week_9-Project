@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.example.petes.blackjackproject.R;
 import com.example.petes.blackjackproject.models.Game;
+import com.example.petes.blackjackproject.models.GameResult;
 import com.example.petes.blackjackproject.models.Player;
 
 public class MainActivity extends AppCompatActivity {
@@ -74,31 +75,46 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onHitButtonClicked(View hit) {
+
         if (isRunning) {
-            game.hit();
-            Integer playerResult = player.getTotalValueOfCards();
-            playerCards.setText(player.getHand());
-            playerHand.setText(playerResult.toString());
-            //if player reaches 21, end turn.
-            if (player.getTotalValueOfCards() == 21) {
-                while (dealer.getTotalValueOfCards() < 17) {
-                    game.stand();
-                    Integer dealerResult = dealer.getTotalValueOfCards();
-                    dealerCards.setText(dealer.getHand());
-                    dealerHand.setText(dealerResult.toString());
-                }
-                result.setText(game.getWinner());
+            GameResult gameResult = game.hit();
+
+            playerCards.setText(gameResult.playerHands);
+            playerHand.setText(gameResult.playerTotal);
+
+            dealerCards.setText(gameResult.dealerHands);
+            dealerHand.setText(gameResult.dealerTotal);
+
+            if(gameResult.isGameOver) {
                 isRunning = false;
+                result.setText(gameResult.gameText);
             }
-            //if player busts from hitting, end turn.
-            if (player.getTotalValueOfCards() > 21) {
-                game.stand();
-                Integer dealerResult = dealer.getTotalValueOfCards();
-                dealerCards.setText(dealer.getHand());
-                dealerHand.setText(dealerResult.toString());
-                result.setText(game.getWinner());
-                isRunning = false;
-            }
+
+
+//            game.hit();
+//            Integer playerResult = player.getTotalValueOfCards();
+//            playerCards.setText(player.getHand());
+//            playerHand.setText(playerResult.toString());
+//            //if player reaches 21, end turn.
+//            if (player.getTotalValueOfCards() == 21) {
+//                while (dealer.getTotalValueOfCards() < 17) {
+//                    game.stand();
+//                    Integer dealerResult = dealer.getTotalValueOfCards();
+//                    dealerCards.setText(dealer.getHand());
+//                    dealerHand.setText(dealerResult.toString());
+//                }
+//                result.setText(game.getWinner());
+//                isRunning = false;
+//            }
+//            //if player busts from hitting, end turn.
+//            if (player.getTotalValueOfCards() > 21) {
+//                game.stand();
+//                Integer dealerResult = dealer.getTotalValueOfCards();
+//                dealerCards.setText(dealer.getHand());
+//                dealerHand.setText(dealerResult.toString());
+//                result.setText(game.getWinner());
+//                isRunning = false;
+//            }
 
         }
     }

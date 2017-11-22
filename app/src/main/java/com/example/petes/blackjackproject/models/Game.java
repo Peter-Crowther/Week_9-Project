@@ -17,8 +17,6 @@ public class Game {
     Player dealer;
 
 
-
-
     public Game(Player player, Player dealer) {
         this.deck = new Deck();
         this.player = player;
@@ -43,9 +41,33 @@ public class Game {
     }
 
 
-    public void hit() {
+    public GameResult hit() {
         Card card = deck.removeCard();
         this.player.takeCard(card);
+
+        GameResult result = new GameResult();
+
+        if (player.getTotalValueOfCards() == 21) {
+            while (dealer.getTotalValueOfCards() < 17) {
+                this.stand();
+            }
+
+            result.isGameOver = true;
+            result.gameText = this.getWinner();
+        }
+
+        if (player.getTotalValueOfCards() > 21) {
+            this.stand();
+            result.isGameOver = true;
+            result.gameText = this.getWinner();
+        }
+
+        result.playerTotal = Integer.toString(player.getTotalValueOfCards());
+        result.playerHands = player.getHand();
+        result.dealerHands = dealer.getHand();
+        result.delerValue = Integer.toString(dealer.getTotalValueOfCards());
+
+        return result;
     }
 
     public void stand() {
