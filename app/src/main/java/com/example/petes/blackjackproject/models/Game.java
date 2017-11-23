@@ -24,6 +24,7 @@ public class Game {
         this.deck.shuffle();
     }
 
+
     public GameResult deal() {
         this.setUp();
         for (int i = 0; i < 2; i++) {
@@ -51,6 +52,7 @@ public class Game {
 
 
     }
+
 
 
     public GameResult hit() {

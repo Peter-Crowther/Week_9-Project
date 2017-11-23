@@ -16,15 +16,14 @@ import static junit.framework.Assert.assertEquals;
 /**
  * Created by petes on 19/11/2017.
  */
-
 public class GameTest {
-
+//
 //    Game game;
 //    Card card1;
 //    Card card2;
 //    Card card3;
 //    Card card4;
-
+//
 //    @Before
 //    public void before(){
 //        game = new Game();
@@ -34,8 +33,8 @@ public class GameTest {
 //        card4 = new Card(SPADES, Rank.SIX);
 //    }
 //
-
-
+//
+//
 //    @Test
 //    public void testWinner() {
 //        Player player = new Player("Peter");
@@ -47,3 +46,4 @@ public class GameTest {
 //        assertEquals("You Win!", game.getWinner());
 //    }
 }
+

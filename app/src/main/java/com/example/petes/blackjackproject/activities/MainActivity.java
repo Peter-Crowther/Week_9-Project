@@ -12,8 +12,6 @@ import com.example.petes.blackjackproject.models.GameResult;
 import com.example.petes.blackjackproject.models.Player;
 
 
-
-
 public class MainActivity extends AppCompatActivity {
 
     private boolean isRunning;
@@ -55,26 +53,53 @@ public class MainActivity extends AppCompatActivity {
     Player dealer = new Player("Dealer");
     Game game = new Game(player, dealer);
 
+
+
     public void onButtonClicked(View deal) {
             isRunning = true;
             howToPlay.setText(null);
             rules.setText(null);
             result.setText(null);
+            playerCards.setText(null);
+            dealerCards.setText(null);
+            dealerHand.setText(null);
+            playerHand.setText(null);
             player.clearHand();
             dealer.clearHand();
             GameResult gameResult = game.deal();
-            Integer playerResult = player.getTotalValueOfCards();
-            Integer dealerResult = dealer.getTotalValueOfCards();
-            dealerCards.setText(dealer.getHand());
-            dealerHand.setText(dealerResult.toString());
+            final Integer playerResult = player.getTotalValueOfCards();
+            final Integer dealerResult = dealer.getTotalValueOfCards();
+            dealerCards.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    dealerCards.setText(dealer.getHand());
+                }
+            },1000);
+            dealerHand.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    dealerHand.setText(dealerResult.toString());
+                }
+            },1100);
             dealerScore.setText("Dealer Score");
-            playerCards.setText(player.getHand());
-            playerHand.setText(playerResult.toString());
+            playerCards.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    playerCards.setText(player.getHand());
+                }
+            }, 500);
+            playerHand.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    playerHand.setText(playerResult.toString());
+                }
+            }, 600);
             playerScore.setText("Your score");
 
         if(gameResult.isGameOver) {
                 isRunning = false;
                 result.setText(gameResult.gameText);
+
              }
     }
 
