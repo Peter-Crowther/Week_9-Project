@@ -34,19 +34,8 @@ public class GameTest {
 //        card4 = new Card(SPADES, Rank.SIX);
 //    }
 //
-////    @Test
-////    public void testAddPlayer() {
-////        game.addPlayer("Peter");
-////        assertEquals(1, game.players.size());
-////    }
-////
-////    @Test
-////    public void testAddDealer() {
-////        game.addDealer("Dealer");
-////        assertEquals(1, game.players.size());
-////    }
-//
-//
+
+
 //    @Test
 //    public void testWinner() {
 //        Player player = new Player("Peter");

@@ -24,15 +24,32 @@ public class Game {
         this.deck.shuffle();
     }
 
-    public void deal() {
+    public GameResult deal() {
         this.setUp();
         for (int i = 0; i < 2; i++) {
             Card card = deck.removeCard();
             this.player.takeCard(card);
-
         }
         Card card = deck.removeCard();
         this.dealer.takeCard(card);
+
+        GameResult result = new GameResult();
+
+        if (player.getTotalValueOfCards() == 21) {
+            result.isGameOver = true;
+            result.gameText = this.blackjack();
+            return result;
+        }
+
+        result.playerTotal = Integer.toString(player.getTotalValueOfCards());
+        result.playerHands = player.getHand();
+
+        result.dealerHands = dealer.getHand();
+        result.dealerTotal = Integer.toString(dealer.getTotalValueOfCards());
+
+        return result;
+
+
     }
 
 
@@ -52,9 +69,8 @@ public class Game {
         }
 
         if (player.getTotalValueOfCards() > 21) {
-            this.stand();
             result.isGameOver = true;
-            result.gameText = this.getWinner();
+            result.gameText = this.busted();
         }
 
         result.playerTotal = Integer.toString(player.getTotalValueOfCards());
@@ -74,10 +90,10 @@ public class Game {
                 while (dealer.getTotalValueOfCards() < 17) {
                 this.stand();
 
-                result.isGameOver = true;
-                result.gameText = this.getWinner();
-
             }
+
+        result.isGameOver = true;
+        result.gameText = this.getWinner();
 
         result.playerTotal = Integer.toString(player.getTotalValueOfCards());
         result.playerHands = player.getHand();
@@ -103,6 +119,14 @@ public class Game {
             return ("You Win!");
         }
         else return("Push");
+    }
+
+    public String blackjack() {
+        return "Blackjack!";
+    }
+
+    public String busted() {
+        return "Bust!";
     }
 
 

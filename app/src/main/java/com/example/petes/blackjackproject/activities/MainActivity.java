@@ -55,9 +55,6 @@ public class MainActivity extends AppCompatActivity {
     Player dealer = new Player("Dealer");
     Game game = new Game(player, dealer);
 
-
-
-
     public void onButtonClicked(View deal) {
             isRunning = true;
             howToPlay.setText(null);
@@ -65,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
             result.setText(null);
             player.clearHand();
             dealer.clearHand();
-            game.deal();
+            GameResult gameResult = game.deal();
             Integer playerResult = player.getTotalValueOfCards();
             Integer dealerResult = dealer.getTotalValueOfCards();
             dealerCards.setText(dealer.getHand());
@@ -74,10 +71,11 @@ public class MainActivity extends AppCompatActivity {
             playerCards.setText(player.getHand());
             playerHand.setText(playerResult.toString());
             playerScore.setText("Your score");
-            if (player.getTotalValueOfCards() == 21) {
-                result.setText("Blackjack!");
+
+        if(gameResult.isGameOver) {
                 isRunning = false;
-            }
+                result.setText(gameResult.gameText);
+             }
     }
 
     public void onHitButtonClicked(View hit) {
@@ -116,8 +114,4 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
-
-
-
-
 }
