@@ -96,9 +96,9 @@ public class MainActivity extends AppCompatActivity {
             }, 600);
             playerScore.setText("Your score");
 
-        if(gameResult.isGameOver) {
+        if(gameResult.isGameOver()) {
                 isRunning = false;
-                result.setText(gameResult.gameText);
+                result.setText(gameResult.getGameText());
 
              }
     }
@@ -108,15 +108,15 @@ public class MainActivity extends AppCompatActivity {
         if (isRunning) {
             GameResult gameResult = game.hit();
 
-            playerCards.setText(gameResult.playerHands);
-            playerHand.setText(gameResult.playerTotal);
+            playerCards.setText(gameResult.getPlayerHands());
+            playerHand.setText(gameResult.getPlayerTotal());
 
-            dealerCards.setText(gameResult.dealerHands);
-            dealerHand.setText(gameResult.dealerTotal);
+            dealerCards.setText(gameResult.getDealerHands());
+            dealerHand.setText(gameResult.getDealerTotal());
 
-            if(gameResult.isGameOver) {
+            if(gameResult.isGameOver()) {
                 isRunning = false;
-                result.setText(gameResult.gameText);
+                result.setText(gameResult.getGameText());
             }
         }
     }
@@ -127,15 +127,15 @@ public class MainActivity extends AppCompatActivity {
         if (isRunning) {
             GameResult gameResult = game.stand();
 
-            playerCards.setText(gameResult.playerHands);
-            playerHand.setText(gameResult.playerTotal);
+            playerCards.setText(gameResult.getPlayerHands());
+            playerHand.setText(gameResult.getPlayerTotal());
 
-            dealerCards.setText(gameResult.dealerHands);
-            dealerHand.setText(gameResult.dealerTotal);
+            dealerCards.setText(gameResult.getDealerHands());
+            dealerHand.setText(gameResult.getDealerTotal());
 
-            if (gameResult.isGameOver) {
+            if (gameResult.isGameOver()) {
                 isRunning = false;
-                result.setText(gameResult.gameText);
+                result.setText(gameResult.getGameText());
             }
         }
     }
