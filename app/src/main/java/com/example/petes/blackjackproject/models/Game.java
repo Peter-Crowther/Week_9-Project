@@ -37,16 +37,16 @@ public class Game {
         GameResult result = new GameResult();
 
         if (player.getTotalValueOfCards() == 21) {
-            result.isGameOver = true;
-            result.gameText = this.blackjack();
+            result.setGameOver(true);
+            result.setGameText(this.blackjack());
             return result;
         }
 
-        result.playerTotal = Integer.toString(player.getTotalValueOfCards());
-        result.playerHands = player.getHand();
+        result.setPlayerTotal(Integer.toString(player.getTotalValueOfCards()));
+        result.setPlayerHands(player.getHand());
 
-        result.dealerHands = dealer.getHand();
-        result.dealerTotal = Integer.toString(dealer.getTotalValueOfCards());
+        result.setDealerHands(dealer.getHand());
+        result.setDealerTotal(Integer.toString(dealer.getTotalValueOfCards()));
 
         return result;
 
@@ -66,19 +66,19 @@ public class Game {
                 this.stand();
             }
 
-            result.isGameOver = true;
-            result.gameText = this.getWinner();
+            result.setGameOver(true);
+            result.setGameText(this.getWinner());
         }
 
         if (player.getTotalValueOfCards() > 21) {
-            result.isGameOver = true;
-            result.gameText = this.busted();
+            result.setGameOver(true);
+            result.setGameText(this.busted());
         }
 
-        result.playerTotal = Integer.toString(player.getTotalValueOfCards());
-        result.playerHands = player.getHand();
-        result.dealerHands = dealer.getHand();
-        result.dealerTotal = Integer.toString(dealer.getTotalValueOfCards());
+        result.setPlayerTotal(Integer.toString(player.getTotalValueOfCards()));
+        result.setPlayerHands(player.getHand());
+        result.setDealerHands(dealer.getHand());
+        result.setDealerTotal(Integer.toString(dealer.getTotalValueOfCards()));
 
         return result;
     }
@@ -94,13 +94,13 @@ public class Game {
 
             }
 
-        result.isGameOver = true;
-        result.gameText = this.getWinner();
+        result.setGameOver(true);
+        result.setGameText(this.getWinner());
 
-        result.playerTotal = Integer.toString(player.getTotalValueOfCards());
-        result.playerHands = player.getHand();
-        result.dealerHands = dealer.getHand();
-        result.dealerTotal = Integer.toString(dealer.getTotalValueOfCards());
+        result.setPlayerTotal(Integer.toString(player.getTotalValueOfCards()));
+        result.setDealerHands(player.getHand());
+        result.setDealerHands(dealer.getHand());
+        result.setDealerTotal(Integer.toString(dealer.getTotalValueOfCards()));
 
         return result;
     }

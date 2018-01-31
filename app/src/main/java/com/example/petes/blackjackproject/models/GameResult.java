@@ -5,12 +5,12 @@ package com.example.petes.blackjackproject.models;
  */
 
 public class GameResult {
-    String playerHands;
-    String playerTotal;
-    boolean isGameOver;
-    String gameText;
-    String dealerHands;
-    String dealerTotal;
+   private String playerHands;
+   private String playerTotal;
+   private boolean isGameOver;
+   private String gameText;
+   private String dealerHands;
+   private String dealerTotal;
 
 
     public GameResult() {
@@ -44,5 +44,29 @@ public class GameResult {
 
     public String getDealerTotal() {
         return dealerTotal;
+    }
+
+    public void setPlayerHands(String playerHands) {
+        this.playerHands = playerHands;
+    }
+
+    public void setPlayerTotal(String playerTotal) {
+        this.playerTotal = playerTotal;
+    }
+
+    public void setGameOver(boolean gameOver) {
+        isGameOver = gameOver;
+    }
+
+    public void setGameText(String gameText) {
+        this.gameText = gameText;
+    }
+
+    public void setDealerHands(String dealerHands) {
+        this.dealerHands = dealerHands;
+    }
+
+    public void setDealerTotal(String dealerTotal) {
+        this.dealerTotal = dealerTotal;
     }
 }
